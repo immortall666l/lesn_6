@@ -10,8 +10,6 @@ class Uploader
     public function __construct($area_name)
     {
         $this->area_name = $area_name;
-        //составляем имя файла
-        $this->setFileName();
     }
 
     //3.2 Метод isUploaded() проверяет - был ли загружен файл от данного имени поля
@@ -29,6 +27,8 @@ class Uploader
     {
         if ( $this->isUploaded() ) {
             //если файл был загружен из нужного нам поля, то перемещаем его в нужную нам директорию
+            //составляем имя файла
+            $this->final_filename = $this->setFileName();
             move_uploaded_file(
                 $_FILES[$this->area_name]['tmp_name'],
                 $this->final_filename
@@ -43,7 +43,8 @@ class Uploader
     protected function setFileName()
     {
         $filename = $_FILES[$this->area_name]['name'];
-        $this->final_filename = __DIR__.'/../img/'.time().$filename;
+        $final_filename = __DIR__.'/../img/'.time().$filename;
+        return $final_filename;
     }
 
 }

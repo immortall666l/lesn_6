@@ -1,7 +1,7 @@
 <?php
 
 
-class GuestBook extends TextFile
+class GuestBook
 {
     // 1. Создайте класс GuestBook, который будет удовлетворять следующим требованиям:
 
